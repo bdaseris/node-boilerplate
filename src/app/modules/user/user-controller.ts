@@ -1,5 +1,5 @@
 import { Controller, Get, Post } from '@/common/decorators/route'
-import { Users } from '@/infra/persistences/typeorm/models/Users'
+import { Users } from '@/persistences/typeorm/models/Users'
 import { UserService } from './user-service'
 import { FindManyOptions } from 'typeorm'
 import { Body } from '@/common/helpers/http/request/body'

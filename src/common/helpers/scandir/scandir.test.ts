@@ -43,7 +43,7 @@ describe('scandir', () => {
 
     vi.mocked(readdir).mockResolvedValue(expectedFiles as Dirent[])
 
-    const files = []
+    const files: string[] = []
     for await (const file of scandir(directoryPath)) {
       vi.mocked(readdir).mockResolvedValue([
         {
@@ -94,7 +94,7 @@ describe('scandir', () => {
 
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
 
-    const files = []
+    const files: string[] = []
     for await (const file of scandir(directoryPath)) {
       files.push(file)
     }

@@ -1,4 +1,4 @@
-import '@/infra/config/environment'
+import '@/config/environment'
 
 import path from 'node:path'
 import { getenv } from '@/common/libs/dotenv'

@@ -20,11 +20,11 @@ describe('getenv', () => {
   })
 
   it('should return the fallback value when the environment variable is undefined', () => {
-    expect(getenv(undefined, 'fallback')).toEqual('fallback')
+    expect(getenv('undefined', 'fallback')).toEqual('fallback')
   })
 
   it('should return the fallback value when the environment variable is null', () => {
-    expect(getenv(null, 'fallback')).toEqual('fallback')
+    expect(getenv('null', 'fallback')).toEqual('fallback')
   })
 
   it('should return undefined for a non-existing environment variable without fallback', () => {

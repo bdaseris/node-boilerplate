@@ -2,7 +2,7 @@ import 'express-async-errors'
 
 import express from 'express'
 import cors from 'cors'
-import routes from '@/infra/frameworks/express/routes'
+import routes from '@/frameworks/express/routes'
 import { onError, onRequest } from './middlewares'
 
 const app = express()

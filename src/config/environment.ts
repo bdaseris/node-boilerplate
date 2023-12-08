@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import { join, resolve } from 'node:path'
 import dotenv from 'dotenv'
 
-import { KERNEL } from '@/infra/config/kernel'
+import { KERNEL } from '@/config/kernel'
 import { getenv } from '@/common/libs/dotenv'
 
 export const APP_ENV = getenv('NODE_ENV', 'development')

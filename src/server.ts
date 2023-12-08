@@ -1,8 +1,8 @@
-import '@/infra/config/environment'
+import '@/config/environment'
 
 import { SystemLogger } from '@/common/libs/log4js'
 import { getenv } from '@/common/libs/dotenv'
-import AppServer from '@/infra/frameworks/express/app'
+import AppServer from '@/frameworks/express/app'
 
 const APP_PORT = getenv('APP_PORT', 8080)
 

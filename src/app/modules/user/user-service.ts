@@ -1,8 +1,6 @@
 import { FindManyOptions, Repository } from 'typeorm'
-import { entityManager } from '@/infra/persistences/typeorm'
-
-import { Users } from '@/infra/persistences/typeorm/models/Users'
-import { User } from '@/domain/entities/user'
+import { entityManager } from '@/persistences/typeorm'
+import { Users } from '@/persistences/typeorm/models/Users'
 
 export abstract class UserService {
   static _userRepository: Repository<Users> = entityManager.getRepository(Users)
@@ -11,7 +9,7 @@ export abstract class UserService {
     return UserService._userRepository.find(options)
   }
 
-  static async save(data: any): Promise<void | User | null> {
+  static async save(data: any): Promise<Users | null> {
     return UserService._userRepository.save(data)
   }
 

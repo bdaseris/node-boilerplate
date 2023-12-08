@@ -5,47 +5,47 @@ This is a basic template for a Node.js project using TypeScript + ESLint and Vit
 ## Pre-requisites
 
 - Node.js (versão >= 18.16.0)
-- pnpm (optionnel, mais recommandé)
+- pnpm (optional, but recommended)
 
 ## Installation
 
-1. Clone the repository:
+Clone the repository:
 
-  ```bash
-    git clone https://github.com/bdaseris/node-boilerplate.git
-  ```
-
-2. Install the dependencies:
-
-  ```bash
-    pnpm install --frozen-lockfile
-  ```
-
-## Usage locally
-
-- To start the development server: `pnpm dev:server`
-- To run the tests: `pnpm test`
-- To generate test coverage: `pnpm test:coverage`
-- To build the production version: `pnpm build`
+```bash
+git clone https://github.com/bdaseris/node-boilerplate.git
+```
 
 ## Usage with docker
 
 ```sh
-docker compose up -d --build
+docker compose up -d
 ```
 
 ## Further commands (Docker)
 
 - `docker compose down` (down the containers)
-- `docker compose up -d` (up again the containers) *not necessary to rebuild*
+- `docker compose up -d <container_name>` (up the specified container)
 - `docker compose exec -it app_backend /bin/bash` (enter in the container)
+
+## Usage without docker
+
+Install the dependencies:
+
+```bash
+pnpm install --frozen-lockfile
+```
+
+- To start the development server: `pnpm dev:server`
+- To run the tests: `pnpm test`
+- To generate test coverage: `pnpm test:coverage`
+- To build the production version: `pnpm build` _not necessary on development_
 
 ## Typeorm
 
 ```sh
-pnpm typeorm migration:generate -- -d ./src/infra/persistences/typeorm/datasource.ts
-pnpm typeorm migration:run -- -d ./src/infra/persistences/typeorm/datasource.ts
-pnpm typeorm migration:revert -- -d ./src/infra/persistences/typeorm/datasource.ts
+pnpm typeorm migration:generate -- -d ./src/persistences/typeorm/datasource.ts
+pnpm typeorm migration:run -- -d ./src/persistences/typeorm/datasource.ts
+pnpm typeorm migration:revert -- -d ./src/persistences/typeorm/datasource.ts
 ```
 
 ## Configuration

@@ -1,33 +1,42 @@
-name: Criar Release
+name: Create Release
 
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     tags:
-      - '*'
+      - "*" # Push events to matching any tag
+permissions:
+  contents: write
 
 jobs:
   build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Criar Release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          prerelease: true
+          fetch-depth: 0
 
-      - name: Upload de Ativos
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setupe node 18.x
+        uses: actions/setup-node@v4
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./LICENSE
-          asset_name: test.txt
-          asset_content_type: text/plain
+          node-version: 18.x
+
+      # - name: Extract release notes from changelog
+      #   id: extract_notes
+      #   run: echo "name=notes::$(awk '/^## /{f=!f}f' changelog.md | sed -n '/^## /q;p')" >> $GITHUB_OUTPUT
+      - name: Create Release
+        # id: create_release
+        # uses: actions/create-release@v1
+        run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        # with:
+        #   tag_name: ${{ github.ref }}
+        #   release_name: Release ${{ github.ref }}
+        #   body: |
+        #     Changes in this Release
+        #     ${{ steps.extract_notes.outputs.notes }}
+        #   draft: false
+        #   prerelease: false

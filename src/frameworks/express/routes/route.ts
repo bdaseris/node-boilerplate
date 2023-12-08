@@ -7,7 +7,7 @@ import {
 } from '@/common/decorators/route'
 import { scandir } from '@/common/helpers/scandir'
 import { SystemLogger } from '@/common/libs/log4js'
-import { KERNEL } from '@/infra/config/kernel'
+import { KERNEL } from '@/config/kernel'
 
 export default class AppRouter {
   public static _route: Router = Router()
@@ -52,6 +52,6 @@ export default class AppRouter {
   }
 
   public toString(): string {
-    return JSON.stringify(this)
+    return 'AppRouter'
   }
 }
