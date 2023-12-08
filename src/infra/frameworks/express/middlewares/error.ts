@@ -1,26 +1,21 @@
-import { NextFunction, Request, Response } from 'express'
-export class AppError extends Error {
+import type { NextFunction, Request, Response } from 'express'
+import { SystemLogger } from '@/common/libs/log4js'
 
-  constructor(
-    public readonly message: string,
-    public readonly statusCode: number = 400
-  ) {
-    super()
+export const onError = (
+  error: any,
+  req: Request,
+  res: Response,
+  _: NextFunction
+): Response => {
+  const { message, statusCode } = error
+
+  SystemLogger.error(message)
+
+  if (statusCode !== undefined) {
+    return res.status(statusCode).json({ message })
   }
-  static handler(
-    err: any,
-    req: Request,
-    res: Response,
-    _: NextFunction
-  ) {
-    const { message, statusCode } = err
 
-    if (statusCode) {
-      return res.status(statusCode).json({ message})
-    }
-
-    return res.status(500).json({
-      message: "Internal server error."
-    })
-  }
+  return res.status(500).json({
+    message: 'Internal server error.'
+  })
 }

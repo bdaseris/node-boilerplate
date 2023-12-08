@@ -9,10 +9,10 @@
   "scripts": {
     "build": "tsc",
     "start": "node -r tsconfig-paths/register dist/server.js",
-    "dev:build": "tsc -w",
-    "dev:start": "tsx watch -r tsconfig-paths/register ./src/server.ts",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "dev:server": "tsx --watch -r tsconfig-paths/register --inspect=0.0.0.0:9229 ./src/server.ts",
+    "test": "vitest ./src",
+    "test:coverage": "vitest run --coverage ./src",
+    "typeorm": "tsx -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -28,8 +28,9 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
+    "log4js": "^6.9.1",
     "tsconfig-paths": "^4.2.0",
-    "tsx": "^3.12.7",
+    "tsx": "^3.14.0",
     "typescript": "^5.1.6",
     "vitest": "^0.34.1",
     "vitest-tsconfig-paths": "^3.4.1"
@@ -39,6 +40,8 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
-    "reflect-metadata": "^0.1.13"
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.17"
   }
 }

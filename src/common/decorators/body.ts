@@ -1,23 +1,6 @@
-// export const Body = (target: any, propertyKey: string) => {
-//   return (target: any, propertyKey: string, parameterIndex: number) => {
-//     const bodyParameters = Reflect.getMetadata(
-//       'body:parameters',
-//       target,
-//       propertyKey
-//     )
-//     const existingBodyParameters: number[] =
-//       Reflect.getOwnMetadata('body:parameters', target, propertyKey) || []
-//     existingBodyParameters.push(bodyParameters)
-//     Reflect.defineMetadata(
-//       'body:parameters',
-//       existingBodyParameters,
-//       target,
-//       propertyKey
-//     )
-//   }
-// }
+type SchemaType<T> = T extends { new (): infer U } ? U : never
 
-export const Body = () => {
+export const Body = (schema: SchemaType<any>) => {
   return (target: any, propertyKey: string, parameterIndex: number) => {
     const existingBodyParameters: number[] =
       Reflect.getOwnMetadata('body:parameters', target, propertyKey) || []
@@ -28,5 +11,14 @@ export const Body = () => {
       target,
       propertyKey
     )
+
+    // TODO: Add validation
+    // Perform validation logic on the schema and request body
+    const requestBody = {} // get the request body
+    const validateRequestBody = 1 === 1 // validate the requestBody using the schema
+
+    if (!validateRequestBody) {
+      throw new Error('Invalid request body')
+    }
   }
 }

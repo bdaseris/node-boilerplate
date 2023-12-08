@@ -1,1 +1,1 @@
-export { getEnv } from '@/common/libs/dotenv/getenv'
+export { getenv } from '@/common/libs/dotenv/getenv'

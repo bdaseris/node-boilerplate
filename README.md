@@ -1,48 +1,68 @@
 # Boilerplate Node.js + TypeScript + ESLint
 
-Este é um boilerplate para um projeto Node.js usando TypeScript + ESLint e Vitest. Ele fornece uma estrutura básica para começar a desenvolver rapidamente.
+This is a basic template for a Node.js project using TypeScript + ESLint and Vitest. It provides a basic structure to quickly start developing.
 
-## Requisitos
+## Pre-requisites
 
 - Node.js (versão >= 18.16.0)
-- pnpm (opcional, mas recomendado)
+- pnpm (optionnel, mais recommandé)
 
-## Instalação
+## Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 
-```bash
-  git clone https://github.com/brunorafaeI/node-boilerplate.git
+  ```bash
+    git clone https://github.com/bdaseris/node-boilerplate.git
+  ```
+
+2. Install the dependencies:
+
+  ```bash
+    pnpm install --frozen-lockfile
+  ```
+
+## Usage locally
+
+- To start the development server: `pnpm dev:server`
+- To run the tests: `pnpm test`
+- To generate test coverage: `pnpm test:coverage`
+- To build the production version: `pnpm build`
+
+## Usage with docker
+
+```sh
+docker compose up -d --build
 ```
 
-2. Instale as dependências:
+## Further commands (Docker)
 
-```bash
-  pnpm install
+- `docker compose down` (down the containers)
+- `docker compose up -d` (up again the containers) *not necessary to rebuild*
+- `docker compose exec -it app_backend /bin/bash` (enter in the container)
+
+## Typeorm
+
+```sh
+pnpm typeorm migration:generate -- -d ./src/infra/persistences/typeorm/datasource.ts
+pnpm typeorm migration:run -- -d ./src/infra/persistences/typeorm/datasource.ts
+pnpm typeorm migration:revert -- -d ./src/infra/persistences/typeorm/datasource.ts
 ```
 
-## Uso
+## Configuration
 
-- Para iniciar o servidor de desenvolvimento: `pnpm dev:start`
-- Para rodar os testes: `pnpm test`
-- Para gerar o coverage dos tests: `pnpm test:coverage`
-- Para gerar a build para produção: `pnpm build`
-
-## Configuração
-
-Este projeto usa as seguintes tecnologias e ferramentas:
+This project uses the following technologies and tools:
 
 - Node.js
 - TypeScript
 - ESLint
 - Vitest
 
-A configuração do ESLint pode ser encontrada no arquivo `.eslintrc.json`.
+The ESLint configuration can be found in the `.eslintrc.json`.
 
-## Contribuição
+## Contribution
 
-Sinta-se à vontade para contribuir com melhorias neste projeto. Basta abrir uma pull request com as suas alterações.
+Feel free to contribute to the improvement of this project. Simply open a pull request with your modifications.
 
-## Licença
+## Licence
 
-Este projeto está licenciado sob a licença ISC. Consulte o arquivo LICENSE para obter mais informações.
+This project is licensed under the ISC license. See the LICENSE file for more information.

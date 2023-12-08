@@ -39,9 +39,9 @@ export namespace StringUtil {
    * Converts a value to a string if it is of type string, otherwise returns undefined.
    *
    * @param {any} value - The value to be converted.
-   * @return {string | undefined} The converted string value or undefined.
+   * @return {string} The converted string value.
    */
-  export function toString(value?: any): string | undefined {
-    return typeof value === 'string' ? value : undefined
+  export function toString(value?: any): string {
+    return typeof value === 'string' ? value : String(value)
   }
 }

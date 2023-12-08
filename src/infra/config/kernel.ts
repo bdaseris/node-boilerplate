@@ -1,11 +1,5 @@
-import { join } from 'node:path'
-
-export function projectDirFromPlatform() {
-  return process.platform === 'win32'
-    ? join(__dirname, '..', '..', '..')
-    : process.cwd()
-}
+import { resolve } from 'node:path'
 
 export const KERNEL = {
-  project_dir: projectDirFromPlatform(),
+  project_dir: resolve(__dirname, '..', '..'),
 }

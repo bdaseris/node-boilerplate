@@ -9,7 +9,7 @@ type GetEnvType = string | boolean | number
  * @return {GetEnvType | undefined} - The value of the environment variable if found, or the fallback value if provided,
  * or undefined if neither is found.
  */
-export function getEnv<T extends GetEnvType = string>(
+export function getenv<T extends GetEnvType = string>(
   key: string,
   fallback?: T
 ): GetEnvType | undefined {

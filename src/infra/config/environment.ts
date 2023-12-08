@@ -1,18 +1,20 @@
-import dotenv from 'dotenv'
 import fs from 'node:fs'
-import path from 'node:path'
-import { KERNEL } from '@/infra/config/kernel'
-import { getEnv } from '@/common/libs/dotenv'
+import { join, resolve } from 'node:path'
+import dotenv from 'dotenv'
 
-export const APP_ENV = getEnv('NODE_ENV', 'development')
-const PROJECT_DIR = KERNEL.project_dir
-export const checkEnvFile = (envPath: string) => {
+import { KERNEL } from '@/infra/config/kernel'
+import { getenv } from '@/common/libs/dotenv'
+
+export const APP_ENV = getenv('NODE_ENV', 'development')
+export const checkEnvFile = (envPath: string): void => {
   if (fs.existsSync(envPath)) {
     dotenv.config({ path: envPath })
   }
 }
 
 // Load the environment files
-checkEnvFile(path.resolve(PROJECT_DIR, `.env.${APP_ENV}`))
-checkEnvFile(path.resolve(PROJECT_DIR, '.env.local'))
-checkEnvFile(path.resolve(PROJECT_DIR, '.env'))
+const PROJECT_DIR = join(KERNEL.project_dir, '..')
+
+checkEnvFile(resolve(PROJECT_DIR, `.env.${APP_ENV}`))
+checkEnvFile(resolve(PROJECT_DIR, '.env.local'))
+checkEnvFile(resolve(PROJECT_DIR, '.env'))

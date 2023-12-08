@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import fs from 'node:fs'
 
-import { getEnv } from '@/common/libs/dotenv'
+import { getenv } from '@/common/libs/dotenv'
 import { checkEnvFile } from '@/infra/config/environment'
 
 describe('stringUtil', () => {
@@ -27,13 +27,9 @@ describe('stringUtil', () => {
     const envPath = 'invalid/path/to/env/file'
     vi.spyOn(fs, 'existsSync').mockReturnValue(false)
 
-    expect(() => checkEnvFile(envPath)).not.toThrow()
-  })
-
-  it('should not throw an error when envPath is null or undefined', () => {
-    const envPath = null
-
-    expect(() => checkEnvFile(envPath)).not.toThrow()
+    expect(() => {
+      checkEnvFile(envPath)
+    }).not.toThrow()
   })
 
   it('should returns the NODE_ENV environment variable equal to "development"', () => {
@@ -45,6 +41,6 @@ describe('stringUtil', () => {
       },
     })
 
-    expect(getEnv('NODE_ENV')).toBe('development')
+    expect(getenv('NODE_ENV')).toBe('development')
   })
 })

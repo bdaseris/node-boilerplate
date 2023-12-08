@@ -1,0 +1,47 @@
+version: "3.5"
+services:
+  backend:
+    build:
+      context: ./
+    container_name: app_backend
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - network
+    ports:
+      - 4554:4554
+      - 9229:9229
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: db_pgsql
+    restart: unless-stopped
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data:rw
+    environment:
+      - POSTGRES_PASSWORD=app_node
+      - POSTGRES_USER=app_node
+      - POSTGRES_DB=app_node
+    ports:
+      - 5432:5432
+    networks:
+      - network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: db_pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dev@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=dev123
+    networks:
+      - network
+    ports:
+      - 8083:80
+
+volumes:
+  pgsql_data: {}
+
+networks:
+  network:
+    driver: bridge

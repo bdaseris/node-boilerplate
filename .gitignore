@@ -1,4 +1,11 @@
 node_modules
 .vscode
+.pnpm-store
+.trunk
+
 dist
+build
 coverage
+tmp
+
+.env.*local*
